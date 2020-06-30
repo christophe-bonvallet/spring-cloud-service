@@ -4,7 +4,7 @@
 !.vscode/extensions.json
 *.code-workspace
 git.properties
-
+.rsa
 # Local History for Visual Studio Code
 .history/
 

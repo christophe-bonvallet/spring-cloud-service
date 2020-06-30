@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Formation.SpringCloud.Service.Controllers
@@ -10,17 +11,19 @@ namespace Formation.SpringCloud.Service.Controllers
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
-    {
-        private static readonly string[] Summaries = new[]
+    { 
+        private static readonly string[] DefaultSummaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
+        private readonly string[] Summaries;
 
         private readonly ILogger<WeatherForecastController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            Summaries = configuration.GetSection("config:weatherforecast:summary").Get<string[]>() ?? DefaultSummaries;
         }
 
         [HttpGet]
