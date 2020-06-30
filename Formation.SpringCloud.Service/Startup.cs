@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Steeltoe.Discovery.Client;
 using Steeltoe.Management.CloudFoundry;
 using Steeltoe.Management.Endpoint.Refresh;
 
@@ -33,6 +34,7 @@ namespace Formation.WeatherForecast.Service
             services.AddControllers();
             services.AddCloudFoundryActuators(Configuration);
             services.AddRefreshActuator(Configuration);
+            services.AddDiscoveryClient(Configuration);
             services.AddSwaggerGen(c => {
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -55,7 +57,7 @@ namespace Formation.WeatherForecast.Service
             app.UseAuthorization();
             app.UseCloudFoundryActuators();
             app.UseRefreshActuator();
-
+            app.UseDiscoveryClient();
             app.UseReDoc(c =>
 			{
 				c.SpecUrl("/swagger/v1/swagger.json");
