@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Management.CloudFoundry;
+using Steeltoe.Management.Endpoint.Health;
 using Steeltoe.Management.Endpoint.Refresh;
 
 namespace Formation.WeatherForecast.Service
@@ -32,6 +33,7 @@ namespace Formation.WeatherForecast.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHealthActuator(Configuration);
             services.AddCloudFoundryActuators(Configuration);
             services.AddRefreshActuator(Configuration);
             services.AddDiscoveryClient(Configuration);
@@ -55,6 +57,7 @@ namespace Formation.WeatherForecast.Service
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseHealthActuator();
             app.UseCloudFoundryActuators();
             app.UseRefreshActuator();
             app.UseDiscoveryClient();
