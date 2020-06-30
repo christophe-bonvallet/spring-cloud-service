@@ -16,9 +16,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.5" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.5" />
     <PackageReference Include="Steeltoe.common.hosting" Version="2.4.4" />
     <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="2.4.4" />
     <PackageReference Include="Steeltoe.extensions.configuration.cloudfoundrycore" Version="2.4.4" />
+    <PackageReference Include="Steeltoe.Extensions.Configuration.ConfigServerCore" Version="2.4.4" />
     <PackageReference Include="Steeltoe.extensions.logging.dynamiclogger" Version="2.4.4" />
     <PackageReference Include="Steeltoe.management.cloudFoundryCore" Version="2.4.4" />
     <PackageReference Include="Swashbuckle.aspnetCore" Version="5.5.1" />

@@ -8,5 +8,6 @@ applications:
   memory: 1G
   services:
   - eureka-registry
+  - config-server
   env:
     ASPNETCORE_ENVIRONMENT: Production
